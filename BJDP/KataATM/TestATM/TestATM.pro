@@ -19,6 +19,9 @@ include(../ATM/ATM.pri)
 SOURCES += \
     testatm.cpp
 
-DEFINES += SRCDIR=\\\"$$PWD/\\\"
+#DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 HEADERS +=
+
+OTHER_FILES += \
+    requirements.txt

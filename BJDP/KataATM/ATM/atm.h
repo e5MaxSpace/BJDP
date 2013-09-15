@@ -1,19 +1,36 @@
 #ifndef ATM_H
 #define ATM_H
 
+#include <map>
+#include <string>
+
+class Account;
+class ElectricityCard;
+class Command;
+class ATMAction;
+
 class ATM
 {
 public:
     ATM();
+    ~ATM();
 
+    void login(const std::string &userId);
+    void logout();
+
+    void doSelfService(const std::string &actionName, double amount);
     double getBalance() const;
-    void deposite(double money);
-    void withdraw(double money);
-    void rechargeElectricity(double unit);
+    int getStockOfElectricity() const;
 
 private:
-    double m_balance;
-    const double m_pricePerKwh;
+    Account *m_aAccount;
+    ElectricityCard *m_aElectricityCard;
+
+    std::map<std::string, Command*> m_commands;
+    std::map<std::string, ATMAction*> m_actions;
+
+    ATM(const ATM &other);
+    ATM &operator=(const ATM &rhs);
 };
 
 #endif // ATM_H
